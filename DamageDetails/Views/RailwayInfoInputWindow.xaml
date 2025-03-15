@@ -1,0 +1,54 @@
+﻿<hc:Window
+    x:Class="DamageMaker.Views.RailwayInfoInputWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:DamageMaker.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:DamageMaker.ViewModels"
+    xmlns:viewmodels1="clr-namespace:DamageMarker.ViewModels"
+    Width="400"
+    Height="780"
+    d:DataContext="{d:DesignInstance Type=viewmodels1:MainWindowViewModel}"
+    Background="{DynamicResource RegionBrush}"
+    Closed="Window_Closed"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="ToolWindow"
+    mc:Ignorable="d">
+    <StackPanel>
+        <StackPanel.Resources>
+            <Style BasedOn="{StaticResource TextBoxExtend}" TargetType="hc:TextBox">
+                <Setter Property="Margin" Value="10" />
+            </Style>
+        </StackPanel.Resources>
+        <hc:SimplePanel>
+            <TextBlock Margin="20" Style="{StaticResource TextBlockLargeBold}">铁轨回放信息录入</TextBlock>
+        </hc:SimplePanel>
+        <!-- 录入名称 -->
+        <hc:TextBox hc:TitleElement.Title="录入名称:" Text="{Binding RailwayName}" />
+        <!-- 串号 -->
+        <hc:TextBox hc:TitleElement.Title="串号：" Text="{Binding SerialNumber}"/>
+        <!-- 仪器 -->
+        <hc:TextBox hc:TitleElement.Title="仪器：" Text="{Binding Instruments}"/>
+        <!-- 分析人 -->
+        <hc:TextBox hc:TitleElement.Title="分析人:" Text="{Binding OperatorName}" />
+        <!-- 作业长度 -->
+        <hc:TextBox hc:TitleElement.Title="作业长度："
+                  Text="{Binding WorkLength}"/>
+        <!-- 作业日期 -->
+        <hc:TextBox hc:TitleElement.Title="作业日期："
+                          Text="{Binding WorkDate}"/>
+        <!-- 正线/站线 -->
+        <hc:TextBox hc:TitleElement.Title="正/站线" Text="{Binding Line}"/>
+
+        <!-- 工区 -->
+        <hc:TextBox hc:TitleElement.Title="工区：" Text="{Binding WorkAreas}"/>
+        <Button
+            Margin="10"
+            Command="{Binding SaveRailWayInfoCommand}"
+            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type hc:Window}}}">
+            保存
+        </Button>
+    </StackPanel>
+</hc:Window>

@@ -1,0 +1,71 @@
+﻿<Window
+    x:Class="DamageMaker.Views.DamageFoldersList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:DamageMaker.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:DamageMarker.ViewModels"
+    Title="DamageFoldersList"
+    Width="850"
+    Height="650"
+    d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+    mc:Ignorable="d">
+    <StackPanel Orientation="Vertical">
+        <DataGrid
+            x:Name="folderList"
+            Height="550"
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding DamageFolders}"
+            ScrollViewer.VerticalScrollBarVisibility="Visible"
+            SelectedItem="{Binding SelectedFolder}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding DoubleClickDamageFolderCommand}" CommandParameter="{Binding ElementName=folderList, Path=SelectedItem}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding FolderName}"
+                    Header="文件名"
+                    IsReadOnly="True"/>
+                <DataGridTextColumn
+                    Binding="{Binding HasDamage}"
+                    Header="是否有伤损数据"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding  CreatTime}"
+                    SortDirection="Descending"
+                    Header="创建日期"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding PngCount}"
+                    Header="捕获图片数量"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding DamagePngCount}"
+                    Header="伤损图片数量"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding HasDocx}"
+                    Header="是否有报表数据"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Binding="{Binding HasMileage}"
+                    Header="是否有里程识别数据"
+                    IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <UniformGrid
+            Margin="5"
+            Columns="5"
+            FirstColumn="4">
+            <Button
+                Command="{Binding OpenDocxCommand}"
+                CommandParameter="{Binding ElementName=folderList, Path=SelectedItem}"
+                Content="打开报表" />
+        </UniformGrid>
+
+    </StackPanel>
+</Window>

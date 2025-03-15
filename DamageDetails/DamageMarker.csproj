@@ -1,0 +1,89 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0-windows10.0.26100.0</TargetFramework>
+		<RootNamespace>DamageMaker</RootNamespace>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>False</UseWindowsForms>
+		<SupportedOSPlatformVersion>10.0.26100.0</SupportedOSPlatformVersion>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<ApplicationIcon>Resources\rail_icon_180532.ico</ApplicationIcon>
+		<NeutralLanguage>zh-Hans</NeutralLanguage>
+		<DefineConstants>WINDOWS</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="file\**" />
+		<EmbeddedResource Remove="file\**" />
+		<None Remove="file\**" />
+		<Page Remove="file\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Remove="R-C.jpg" />
+		<None Remove="Resources\Logo.png" />
+		<None Remove="Resources\p_new0521_l_new05210.jpg" />
+		<None Remove="Resources\R-C.jpg" />
+		<None Remove="Resources\tile.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Resources\rail_icon_180532.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="DocX" Version="3.0.1" />
+		<PackageReference Include="FlaUI.UIA3" Version="4.0.0" />
+		<PackageReference Include="HandyControl" Version="3.4.0" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+		<PackageReference Include="OpenCvSharp4" Version="4.10.0.20241108" />
+		<PackageReference Include="OpenCvSharp4.Extensions" Version="4.10.0.20241108" />
+		<PackageReference Include="OpenCvSharp4.runtime.win" Version="4.10.0.20241108" />
+		<PackageReference Include="System.Drawing.Common" Version="9.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Resources\p_new0521_l_new05210.jpg" />
+		<Resource Include="Resources\Logo.png" />
+		<Resource Include="Resources\tile.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<SplashScreen Include="Resources\R-C.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+		<None Update="Resources\钢轨探伤检测报告模板.docx">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties />
+		</VisualStudio>
+	</ProjectExtensions>
+
+</Project>
